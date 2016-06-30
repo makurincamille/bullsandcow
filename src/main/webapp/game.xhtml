@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form>
+    <h:outputLabel value="Hello, ${game.playerName}"/>
+   <h:outputText value=" My number is  ${game.number}!"/>
+
+    <h:outputLabel value="Enter your gues"/>
+    <h:inputText required="true"
+                 maxlength="4"
+                 value="${game.guessValue}"
+                 requiredMessage="Name is required."
+                 validatorMessage="No longer that 15 chars."/>
+        <h:commandButton value="Guess!" action="#{game.turn}"/>
+    </h:form>
+
+    <h:dataTable value="${game.guesses}" var="g">
+        <h:column>
+            <f:facet name="header">turnNr</f:facet>
+            <h:outputText value="${g.turnNumber}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">guess</f:facet>
+            <h:outputText value="${g.guessString}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">bulls</f:facet>
+            <h:outputText value="${g.bulls}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">cows</f:facet>
+            <h:outputText value="${g.cows}"/>
+        </h:column>
+    </h:dataTable>
+
+</f:view>
+</html>
