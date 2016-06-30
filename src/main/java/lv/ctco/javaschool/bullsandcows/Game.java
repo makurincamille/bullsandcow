@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * Created by kamil.makurin on 6/30/2016.
- *
  */
 @Named("game")
 @SessionScoped
@@ -64,22 +63,18 @@ public class Game implements Serializable {
         this.guessValue = guess;
     }
 
-    public List<Guess> getGuesses() {
-        return guesses;
+    public String getGuesses() {
+        StringBuilder result = new StringBuilder(4);
+        for (Guess guess : guesses) {
+            result.append(guess);
+        }
+        return result.toString();
     }
 
     public void setGuesses(List<Guess> guesses) {
         this.guesses = guesses;
     }
 
-
-    /*public String guessesToString(List<Guess> guesses) {
-        StringBuilder strB = new StringBuilder();
-        for (Guess g : guesses) {
-            strB.append(g.getGuess());
-        }
-        return strB.toString();
-    }*/
 }
 
 

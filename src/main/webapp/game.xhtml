@@ -18,25 +18,26 @@
                  validatorMessage="No longer that 15 chars."/>
         <h:commandButton value="Guess!" action="#{game.turn}"/>
     </h:form>
+    <h:outputLabel value="Test"/>
 
-    <h:dataTable value="${game.guesses}" var="g">
+    <h:dataTable value="value" var="g">
         <h:column>
-            <f:facet name="header">turnNr</f:facet>
-            <h:outputText value="${g.turnNumber}"/>
+            <f:facet name="header">Turn</f:facet>
+            <h:outputText value="asdf"/>
         </h:column>
         <h:column>
-            <f:facet name="header">guess</f:facet>
-            <h:outputText value="${g.guessString}"/>
+            <f:facet name="header">value</f:facet>
+            <h:outputText value="val"/>
         </h:column>
         <h:column>
             <f:facet name="header">bulls</f:facet>
-            <h:outputText value="${g.bulls}"/>
+            <h:outputText value="fdf"/>
         </h:column>
         <h:column>
             <f:facet name="header">cows</f:facet>
-            <h:outputText value="${g.cows}"/>
+            <h:outputText value="fds"/>
         </h:column>
     </h:dataTable>
-
+    <h:outputLabel value="${game.guesses.length()}"/>
 </f:view>
 </html>

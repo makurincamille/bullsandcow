@@ -18,9 +18,9 @@ public class GuessChecker implements Serializable {
     private int cows;
 
     public void checkGuess(byte[] guessValue, byte[] number) {
-        for (int i = 0; i <= guessValue.length; i++) {
+        for (int i = 0; i < guessValue.length; i++) {
             byte guessChar = guessValue[i];
-            for (int j = 0; j <= number.length; j++) {
+            for (int j = 0; j < number.length; j++) {
                 byte numberChar = number[j];
                 compareChars(guessChar, numberChar, i, j);
             }

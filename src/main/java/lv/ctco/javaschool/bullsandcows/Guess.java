@@ -13,15 +13,7 @@ public class Guess {
     private int turnNumber;
     private int bulls;
     private  int cows;
-    private String guessString;
 
-    public String getGuessString() {
-        return guessString;
-    }
-
-    public void setGuessString(byte[] guess) {
-        this.guessString = guess.toString();
-    }
 
     public int getTurnNumber() {
         return turnNumber;
@@ -47,8 +39,12 @@ public class Guess {
         this.cows = cows;
     }
 
-    public byte[] getGuess() {
-        return guess;
+    public String getGuess() {
+        StringBuilder result = new StringBuilder(4);
+        for (byte n : guess) {
+            result.append(n);
+        }
+        return result.toString();
     }
 
     public void setGuess(byte[] guess) {
