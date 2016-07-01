@@ -3,10 +3,6 @@ package lv.ctco.javaschool.bullsandcows;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-/**
- * Created by kamil.makurin on 6/30/2016.
- */
-
 public class Move {
 
     private MyNumber number;
