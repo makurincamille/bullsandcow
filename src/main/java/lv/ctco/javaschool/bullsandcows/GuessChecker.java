@@ -1,26 +1,20 @@
 package lv.ctco.javaschool.bullsandcows;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 
-/**
- * Created by kamil.makurin on 6/30/2016.
- *
- * ioio
- */
 @Named
 @SessionScoped
 public class GuessChecker implements Serializable {
 
-    private int bulls;
-    private int cows;
+    private int bulls=3;
+    private int cows=5;
 
     public void checkGuess(byte[] guessValue, byte[] number) {
-        for (int i = 0; i <= guessValue.length; i++) {
+        for (int i = 0; i < guessValue.length; i++) {
             byte guessChar = guessValue[i];
-            for (int j = 0; j <= number.length; j++) {
+            for (int j = 0; j < number.length; j++) {
                 byte numberChar = number[j];
                 compareChars(guessChar, numberChar, i, j);
             }

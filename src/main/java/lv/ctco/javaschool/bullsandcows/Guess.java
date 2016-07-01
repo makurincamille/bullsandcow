@@ -9,18 +9,18 @@ import javax.inject.Named;
 
 public class Guess {
 
-    private byte[] guess;
+    private byte[] guessArray;
     private int turnNumber;
-    private int bulls;
-    private  int cows;
+    private int bulls = 3;
+    private int cows = 2;
     private String guessString;
 
     public String getGuessString() {
         return guessString;
     }
 
-    public void setGuessString(byte[] guess) {
-        this.guessString = guess.toString();
+    public void setGuessString(String guess) {
+        this.guessString = guess;
     }
 
     public int getTurnNumber() {
@@ -47,11 +47,15 @@ public class Guess {
         this.cows = cows;
     }
 
-    public byte[] getGuess() {
-        return guess;
+    public byte[] getGuessArray() {
+        return guessArray;
     }
 
-    public void setGuess(byte[] guess) {
-        this.guess = guess;
+    public void setGuessArray(String guessString) {
+        byte[] result = new byte[4];
+        for (int i = 0; i < guessString.length(); i++) {
+            result[i] = (byte) guessString.charAt(i);
+        }
+        this.guessArray = result;
     }
 }

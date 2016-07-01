@@ -4,28 +4,22 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.rmi.UnexpectedException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by kamil.makurin on 6/30/2016.
- *
- */
 @Named("game")
 @SessionScoped
 public class Game implements Serializable {
-    @Inject
-    private RandomThinker thinker;
-    @Inject
-    private GuessChecker guessChecker;
 
     private String playerName;
-    private byte[] number;
-    private byte[] guessValue;
+    private MyNumber generatedNumber;
+    private String guessValue;
     private List<Guess> guesses = new ArrayList<>();
 
     public String start() {
-        number = thinker.thinkNumber();
+        generatedNumber = new MyNumber();
+        generatedNumber.thinkNumber();
         return "game?faces-redirect=true";
     }
 
@@ -45,22 +39,23 @@ public class Game implements Serializable {
         return result.toString();
     }
 
-    public void turn() {
-
+    public void turn(){
         Guess guess = new Guess();
-        guess.setGuess(guessValue);
-        guess.setTurnNumber(guesses.size());
-        guessChecker.checkGuess(guessValue, number);
+        guess.setGuessString(guessValue);
+        guess.setGuessArray(guessValue);
+        guess.setTurnNumber(guesses.size()+1);
+
+        guessChecker.checkGuess(guess.getGuessArray(), number);
         guess.setBulls(guessChecker.getBulls());
         guess.setCows(guessChecker.getCows());
         guesses.add(guess);
     }
 
-    public byte[] getGuessValue() {
+    public String getGuessValue() {
         return guessValue;
     }
 
-    public void setGuessValue(byte[] guess) {
+    public void setGuessValue(String guess) {
         this.guessValue = guess;
     }
 
@@ -71,18 +66,4 @@ public class Game implements Serializable {
     public void setGuesses(List<Guess> guesses) {
         this.guesses = guesses;
     }
-
-
-    /*public String guessesToString(List<Guess> guesses) {
-        StringBuilder strB = new StringBuilder();
-        for (Guess g : guesses) {
-            strB.append(g.getGuess());
-        }
-        return strB.toString();
-    }*/
 }
-
-
-/*
-<f:validateRegex pattern "[0-9]{4}"   vnutri tega inputText
- */
