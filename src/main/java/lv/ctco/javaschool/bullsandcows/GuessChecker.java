@@ -8,8 +8,8 @@ import java.io.Serializable;
 @SessionScoped
 public class GuessChecker implements Serializable {
 
-    private int bulls=3;
-    private int cows=5;
+    private int bulls;
+    private int cows;
 
     public void checkGuess(byte[] guessValue, byte[] number) {
         for (int i = 0; i < guessValue.length; i++) {

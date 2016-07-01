@@ -7,20 +7,26 @@ import javax.inject.Named;
  * Created by kamil.makurin on 6/30/2016.
  */
 
-public class Guess {
+public class Move {
 
-    private byte[] guessArray;
+    private MyNumber number;
     private int turnNumber;
-    private int bulls = 3;
-    private int cows = 2;
-    private String guessString;
+    private int bulls;
+    private int cows;
 
-    public String getGuessString() {
-        return guessString;
+    public Move(MyNumber number, int turnNumber, int bulls, int cows) {
+        this.number = number;
+        this.turnNumber = turnNumber;
+        this.bulls = bulls;
+        this.cows = cows;
     }
 
-    public void setGuessString(String guess) {
-        this.guessString = guess;
+    public MyNumber getNumber() {
+        return number;
+    }
+
+    public void setNumber(MyNumber number) {
+        this.number = number;
     }
 
     public int getTurnNumber() {
@@ -45,17 +51,5 @@ public class Guess {
 
     public void setCows(int cows) {
         this.cows = cows;
-    }
-
-    public byte[] getGuessArray() {
-        return guessArray;
-    }
-
-    public void setGuessArray(String guessString) {
-        byte[] result = new byte[4];
-        for (int i = 0; i < guessString.length(); i++) {
-            result[i] = (byte) guessString.charAt(i);
-        }
-        this.guessArray = result;
     }
 }

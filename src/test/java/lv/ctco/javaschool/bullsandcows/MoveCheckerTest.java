@@ -1,15 +1,13 @@
-package lv.ctco.javaschool.boolsandcows;
+package lv.ctco.javaschool.bullsandcows;
 
-import lv.ctco.javaschool.bullsandcows.GuessChecker;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Camille on 01.07.2016.
+ * Created by kamil.makurin on 7/1/2016.
  */
-public class GuessCheckerTest {
+public class MoveCheckerTest {
     GuessChecker guessChecker = new GuessChecker();
 
     @Test
@@ -53,5 +51,15 @@ public class GuessCheckerTest {
         assertEquals(0, guessChecker.getBulls());
         assertEquals(0, guessChecker.getBulls());
 
+    }
+
+    @Test
+    public void test2SameBulls() {
+        byte[] guessValue = new byte[]{2, 2, 4, 3};
+        byte[] number = new byte[]{1, 2, 3, 4};
+        guessChecker.checkGuess(guessValue, number);
+
+        assertEquals(1, guessChecker.getBulls());
+        //assertEquals(2, guessChecker.getCows());
     }
 }
