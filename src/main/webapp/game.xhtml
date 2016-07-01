@@ -9,41 +9,43 @@
 <f:view>
     <body>
     <ui:composition template="templateGame.xhtml">
-     <ui:define name="title">Welcome to Bulls and Cows game!</ui:define>
+        <ui:define name="title">Welcome to Bulls and Cows game!</ui:define>
         <ui:define name="content">
-    <h:form>
-    <h:outputLabel value="Hello, ${game.playerName}"/>
-   <h:outputText value=" My number is  ${game.number}!"/>
+            <h:form>
+                <h:outputLabel value="Hello, ${game.playerName}"/>
+                <h:outputText value=" I have a number in my mind. Try to guess it!"/>
 
-    <h:outputLabel value="Enter your gues"/>
-    <h:inputText required="true"
-                 maxlength="4"
-                 value="${game.guessValue}"
-                 requiredMessage="Name is required."
-                 validatorMessage="No longer that 15 chars."/>
-        <h:commandButton value="Guess!" action="#{game.turn}"/>
-    </h:form>
+            </h:form>
+            <h:form>
+                <h:outputLabel value="Enter your gues"/>
+                <h:inputText required="true"
+                             maxlength="4"
+                             value="${gameUI.guessValue}"
+                             requiredMessage="Name is required."
+                             validatorMessage="No longer that 15 chars."/>
+                <h:commandButton value="Guess!" action="#{gameUI.makeTurn}"/>
+            </h:form>
 
-    <h:dataTable value="${game.guesses}" var="g">
-        <h:column>
-            <f:facet name="header">turnNr</f:facet>
-            <h:outputText value="${g.turnNumber}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">guess</f:facet>
-            <h:outputText value="${g.guessString}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">bulls</f:facet>
-            <h:outputText value="${g.bulls}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">cows</f:facet>
-            <h:outputText value="${g.cows}"/>
-        </h:column>
-    </h:dataTable>
+            <h:dataTable value="${gameUI.moves}" var="g">
+                <h:column>
+                    <f:facet name="header">turnNr</f:facet>
+                    <h:outputText value="${g.turnNumber}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">guess</f:facet>
+                    <h:outputText value="${g.number}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">bulls</f:facet>
+                    <h:outputText value="${g.bulls}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">cows</f:facet>
+                    <h:outputText value="${g.cows}"/>
+                </h:column>
+            </h:dataTable>
         </ui:define>
     </ui:composition>
-</body>
+    </body>
 </f:view>
 </html>

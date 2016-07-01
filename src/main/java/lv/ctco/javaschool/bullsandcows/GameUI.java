@@ -1,20 +1,21 @@
 package lv.ctco.javaschool.bullsandcows;
 
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
-@Named
-@SessionScoped
+@Named("gameUI")
+@RequestScoped
 public class GameUI implements Serializable
 {
     @Inject
     private GameBean gameBean;
     private String playerName;
-    private String guesValue;
+    private String guessValue;
     private List<Move> moves;
 
     public void startGame(){
@@ -23,10 +24,11 @@ public class GameUI implements Serializable
 
     }
     public void makeTurn(){
-        gameBean.makeTurn(stringToArray(guesValue));
+        gameBean.makeTurn(stringToArray(guessValue));
     }
 
     public List<Move> getMoves() {
+        moves = gameBean.getMoves();
         return moves;
     }
 
@@ -42,12 +44,12 @@ public class GameUI implements Serializable
         this.playerName = playerName;
     }
 
-    public String getGuesValue() {
-        return guesValue;
+    public String getGuessValue() {
+        return guessValue;
     }
 
-    public void setGuesValue(String guesValue) {
-        this.guesValue = guesValue;
+    public void setGuessValue(String guesValue) {
+        this.guessValue = guesValue;
     }
 
     public byte[] stringToArray(String value){

@@ -1,19 +1,21 @@
 package lv.ctco.javaschool.bullsandcows;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@RequestScoped
 public class MyNumber {
 
-    @Inject
-    private GuessChecker guessChecker;
     private byte[] numberArray;
 
     //Default Constructor
     public MyNumber() {
     }
+
     //custom Constructor
     public MyNumber(byte[] numberArray) {
         this.numberArray = numberArray;
@@ -33,21 +35,33 @@ public class MyNumber {
         this.numberArray = result;
     }
 
-
     public int countBulls(MyNumber number) {
-        guessChecker.checkGuess(numberArray, number.getNumberArray());
-        int bulls = guessChecker.getBulls();
+        int bulls = 0;
+        byte[] generatedNumber = number.getNumberArray();
+        byte[] guessNumber = numberArray;
+
+        for (int i = 0; i < generatedNumber.length; i++) {
+            if (generatedNumber[i] == guessNumber[i]) {
+                bulls++;
+            }
+        }
         return bulls;
     }
 
     public int countCows(MyNumber number) {
-        guessChecker.checkGuess(numberArray, number.getNumberArray());
-        int cows = guessChecker.getCows();
+        int cows = 0;
+        byte[] generatedNumber = number.getNumberArray();
+        byte[] guessNumber = numberArray;
+        for (int i = 0; i < generatedNumber.length; i++) {
+            byte currentGenerated = generatedNumber[i];
+            for (int j = 0; j < guessNumber.length; j++) {
+                byte currentNumber = guessNumber[j];
+                if (currentNumber == currentGenerated&&i!=j){
+                    cows++;
+                }
+            }
+        }
         return cows;
-    }
-
-    public void toMyNumberString() {
-
     }
 
     public byte[] getNumberArray() {

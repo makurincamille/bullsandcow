@@ -24,7 +24,9 @@ public class GameBean implements Serializable {
 
     public void makeTurn(byte[] guessValue){
         MyNumber guess = new MyNumber(guessValue);
-    moves.add(new Move(guess,moves.size()+1,guess.countBulls(generatedNumber),guess.countCows(generatedNumber)));
+        int bulls = guess.countBulls(generatedNumber);
+        int cows = guess.countCows(generatedNumber);
+    moves.add(new Move(guess,moves.size()+1,bulls,cows));
     }
 
 
