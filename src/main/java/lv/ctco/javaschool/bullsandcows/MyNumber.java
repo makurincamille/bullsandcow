@@ -3,7 +3,9 @@ package lv.ctco.javaschool.bullsandcows;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -70,5 +72,14 @@ public class MyNumber {
 
     public void setNumberArray(byte[] numberArray) {
         this.numberArray = numberArray;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder strB = new StringBuilder();
+        for (int i = 0; i<numberArray.length;i++) {
+            strB.append(numberArray[i]);
+        }
+        return strB.toString();
     }
 }

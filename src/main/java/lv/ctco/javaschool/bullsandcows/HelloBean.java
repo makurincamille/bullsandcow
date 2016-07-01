@@ -6,7 +6,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 
 /**
- *hghg
+ *
  */
 @Named("hello")
 @RequestScoped

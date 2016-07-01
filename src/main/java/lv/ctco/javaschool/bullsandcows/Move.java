@@ -21,8 +21,9 @@ public class Move {
         this.cows = cows;
     }
 
-    public MyNumber getNumber() {
-        return number;
+    public String getNumber() {
+        String numberStr = number.toString();
+        return numberStr;
     }
 
     public void setNumber(MyNumber number) {
