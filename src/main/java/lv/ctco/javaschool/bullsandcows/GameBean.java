@@ -6,8 +6,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@Named("game")
 @SessionScoped
 public class GameBean implements Serializable {
 
