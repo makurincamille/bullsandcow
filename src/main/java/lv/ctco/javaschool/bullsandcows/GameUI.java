@@ -6,23 +6,26 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Named("gameUI")
-@RequestScoped
-public class GameUI implements Serializable
-{
+@SessionScoped
+public class GameUI implements Serializable {
     @Inject
     private GameBean gameBean;
     private String playerName;
     private String guessValue;
+    private String generatedNumber;
     private List<Move> moves;
 
-    public String startGame(){
+    public String startGame() {
         gameBean.start();
+        generatedNumber = gameBean.getGeneratedNumber();
         return "game?faces-redirect=true";
     }
-    public void makeTurn(){
+
+    public void makeTurn() {
         gameBean.makeTurn(stringToArray(guessValue));
     }
 
@@ -51,11 +54,13 @@ public class GameUI implements Serializable
         this.guessValue = guesValue;
     }
 
-    public byte[] stringToArray(String value){
-        byte[] result = new byte[4];
-        for (int i = 0; i<value.length(); i++){
-            result [i] =  (byte)value.charAt(i);
-        }
+    public byte[] stringToArray(String value) {
+        byte[] result = StringConverter.convert(value);
+
         return result;
+    }
+
+    public String getGeneratedNumber() {
+        return generatedNumber;
     }
 }

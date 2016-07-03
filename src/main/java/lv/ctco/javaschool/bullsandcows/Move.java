@@ -2,13 +2,17 @@ package lv.ctco.javaschool.bullsandcows;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import java.io.Serializable;
 
-public class Move {
+public class Move  implements Serializable {
 
     private MyNumber number;
     private int turnNumber;
     private int bulls;
     private int cows;
+
+    public Move() {
+    }
 
     public Move(MyNumber number, int turnNumber, int bulls, int cows) {
         this.number = number;

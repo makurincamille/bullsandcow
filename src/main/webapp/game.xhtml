@@ -12,6 +12,7 @@
         <ui:define name="title">Welcome to Bulls and Cows game!</ui:define>
         <ui:define name="content">
             <h:form>
+                <h:outputText value="${gameUI.generatedNumber}"/>
                 <h:outputLabel value="Hello, ${gameUI.playerName}"/>
                 <h:outputText value=" I have a number in my mind. Try to guess it!"/>
 
@@ -26,22 +27,22 @@
                 <h:commandButton value="Guess!" action="#{gameUI.makeTurn}"/>
             </h:form>
 
-            <h:dataTable value="${gameUI.moves}" var="g">
+            <h:dataTable value="${gameUI.moves}" var="move">
                 <h:column>
                     <f:facet name="header">turnNr</f:facet>
-                    <h:outputText value="${g.turnNumber}"/>
+                    <h:outputText value="${move.turnNumber}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">guess</f:facet>
-                    <h:outputText value="${g.number}"/>
+                    <h:outputText value="${move.number}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">bulls</f:facet>
-                    <h:outputText value="${g.bulls}"/>
+                    <h:outputText value="${move.bulls}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">cows</f:facet>
-                    <h:outputText value="${g.cows}"/>
+                    <h:outputText value="${move.cows}"/>
                 </h:column>
             </h:dataTable>
         </ui:define>

@@ -41,7 +41,6 @@ public class MyNumber {
         int bulls = 0;
         byte[] generatedNumber = number.getNumberArray();
         byte[] guessNumber = numberArray;
-
         for (int i = 0; i < generatedNumber.length; i++) {
             if (generatedNumber[i] == guessNumber[i]) {
                 bulls++;
@@ -58,12 +57,26 @@ public class MyNumber {
             byte currentGenerated = generatedNumber[i];
             for (int j = 0; j < guessNumber.length; j++) {
                 byte currentNumber = guessNumber[j];
-                if (currentNumber == currentGenerated&&i!=j){
+                if (currentNumber == currentGenerated && i != j) {
                     cows++;
                 }
             }
         }
         return cows;
+    }
+
+    private boolean sameNumberExist(MyNumber generatedNumber) {
+        boolean sameNumberExist = false;
+        for (int i = 0; i < generatedNumber.getNumberArray().length; i++) {
+            byte current = generatedNumber.getNumberArray()[i];
+            for (int j = 0; j < generatedNumber.getNumberArray().length; j++) {
+                byte compared = generatedNumber.getNumberArray()[j];
+                if (compared == current && j != i) {
+                    sameNumberExist = true;
+                }
+            }
+        }
+        return sameNumberExist;
     }
 
     public byte[] getNumberArray() {
@@ -77,7 +90,7 @@ public class MyNumber {
     @Override
     public String toString() {
         StringBuilder strB = new StringBuilder();
-        for (int i = 0; i<numberArray.length;i++) {
+        for (int i = 0; i < numberArray.length; i++) {
             strB.append(numberArray[i]);
         }
         return strB.toString();

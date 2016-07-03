@@ -1,5 +1,7 @@
 package lv.ctco.javaschool.bullsandcows;
 
+import lv.ctco.javaschool.bullsandcows.BullsAndCowsExceptions.BullasAndCowsDebugException;
+
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -10,7 +12,7 @@ import java.util.List;
 public class GameBean implements Serializable {
 
     private String playerName;
-    private MyNumber generatedNumber;
+    private MyNumber generatedNumber = null;
     private List<Move> moves = new ArrayList<>();
 
     public void start() {
@@ -19,13 +21,23 @@ public class GameBean implements Serializable {
         moves.removeAll(moves);
     }
 
-    public void makeTurn(byte[] guessValue){
+    public boolean makeTurn(byte[] guessValue) {
+        boolean got4Bulls = false;
         MyNumber guess = new MyNumber(guessValue);
         int bulls = guess.countBulls(generatedNumber);
         int cows = guess.countCows(generatedNumber);
-    moves.add(new Move(guess,moves.size()+1,bulls,cows));
+        moves.add(new Move(guess, moves.size() + 1, bulls, cows));
+        if (bulls==4){
+            got4Bulls = true;
+        }
+
+        return got4Bulls;
     }
 
+    public String getGeneratedNumber() {
+        String generatedNumberStr = generatedNumber.toString();
+        return generatedNumberStr;
+    }
 
     public List<Move> getMoves() {
         return moves;
