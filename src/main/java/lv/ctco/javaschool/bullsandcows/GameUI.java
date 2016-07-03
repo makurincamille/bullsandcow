@@ -18,10 +18,9 @@ public class GameUI implements Serializable
     private String guessValue;
     private List<Move> moves;
 
-    public void startGame(){
-
+    public String startGame(){
         gameBean.start();
-
+        return "game?faces-redirect=true";
     }
     public void makeTurn(){
         gameBean.makeTurn(stringToArray(guessValue));

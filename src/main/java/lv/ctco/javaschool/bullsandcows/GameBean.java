@@ -13,11 +13,10 @@ public class GameBean implements Serializable {
     private MyNumber generatedNumber;
     private List<Move> moves = new ArrayList<>();
 
-    public String start() {
+    public void start() {
         generatedNumber = new MyNumber();
         generatedNumber.thinkNumber();
         moves.removeAll(moves);
-        return "game?faces-redirect=true";
     }
 
     public void makeTurn(byte[] guessValue){

@@ -16,10 +16,10 @@
            <p>Hi. Please Enter your name. And press Start button</p>
            <h:inputText required="true"
                         maxlength="15"
-                        value="${game.playerName}"
+                        value="${gameUI.playerName}"
                         requiredMessage="Name is required."
                         validatorMessage="No longer that 15 chars."/>
-           <h:commandButton value="Start game" action="#{game.start}"/>
+           <h:commandButton value="Start game" action="#{gameUI.startGame}"/>
        </h:form>
             </ui:define>
         </ui:composition>
